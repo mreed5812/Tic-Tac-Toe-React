@@ -83,7 +83,8 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-
+    const tieGame = (this.state.stepNumber === 10 && winner === null)
+    //'step' is value of current element of history array; 'move' is index in array of current element
     const moves = history.map((step, move) => {
       const desc = move ? 'Go to move #' + move : 'Go to game start';
       return (
@@ -94,11 +95,13 @@ class Game extends React.Component {
       );
     });
 
-
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
-    } else {
+    }else if (tieGame) {
+      status = 'Tie Game';
+    } 
+    else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
@@ -125,6 +128,7 @@ ReactDOM.render(
   <Game />,
   document.getElementById('root')
 );
+
 
 function calculateWinner(squares) {
   const lines = [
