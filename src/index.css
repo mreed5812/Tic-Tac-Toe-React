@@ -1,7 +1,7 @@
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
-    background-color: cyan;
+    background-color: MidnightBlue;
   }
   
   ol, ul {
@@ -67,4 +67,9 @@ body {
   
   .game {
     text-align: center;
+  }
+
+  .game-info {
+    color: white;
+    font-size: 24px;
   }
