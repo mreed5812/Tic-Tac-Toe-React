@@ -85,16 +85,6 @@ class Game extends React.Component {
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
     const tieGame = (history.length === 10 && winner === null);
-    //'step' is value of current element of history array; 'move' is index in array of current element
-    const moves = history.map((step, move) => {
-      const desc = move ? 'Go to move #' + move : 'Go to game start';
-      return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}
-          </button>
-        </li>
-      );
-    });
 
     let status;
     if (winner) {
@@ -103,20 +93,22 @@ class Game extends React.Component {
       status = 'Tie Game';
     } 
     else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O') + tieGame;
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
       <div className="game">
-        <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
-        </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
+        <div className="container">
+          <div className="gameTitle">Tic-Tac-Toe</div>
+          <div className="game-board">
+            <Board
+              squares={current.squares}
+              onClick={(i) => this.handleClick(i)}
+            />
+          </div>
+          <div className="game-info">
+            <div>{status}</div>
+          </div>
         </div>
       </div>
     );
