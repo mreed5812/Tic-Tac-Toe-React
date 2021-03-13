@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import './index.css';
 
 function Square(props) {
@@ -83,7 +84,7 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-    const tieGame = (this.state.stepNumber === 10 && winner === null)
+    const tieGame = (history.length === 10 && winner === null);
     //'step' is value of current element of history array; 'move' is index in array of current element
     const moves = history.map((step, move) => {
       const desc = move ? 'Go to move #' + move : 'Go to game start';
@@ -98,11 +99,11 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
-    }else if (tieGame) {
+    } else if (tieGame) {
       status = 'Tie Game';
     } 
     else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O') + tieGame;
     }
 
     return (
